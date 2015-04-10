@@ -1,0 +1,128 @@
+body {
+  font: 14px/1.5 "Roboto", Helvetica, Arial, Sans-serif;
+  background-color: #f1c40f;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", Helvetica, Arial, Sans-serif;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 24px;
+  margin: 0px;
+}
+
+p {
+  margin: 0;
+}
+
+#top-bar {
+  width: 100%;
+  border-top: 5px solid #333;
+  text-align: center;
+}
+
+#top-bar h1 {
+  text-transform: lowercase;
+  font-family: "Shadows Into Light", Satisfy, Helvetica, Arial, Sans-serif;
+  font-size: 64px;
+}
+
+#container {
+  overflow: hidden;
+  width: 1125px;
+  margin: 40px auto 80px;
+}
+
+.flavor {
+  width: 340px;
+  overflow: hidden;
+  margin: 0 15px 15px 0;
+  padding: 15px 10px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.flavor.highlighted {
+  width: 336px;
+  border: 2px solid #333;
+}
+
+.meta {
+  float: left;
+  width: 50px;
+  padding-top: 5px;
+  margin-right: 11px;
+  text-align: center;
+  color: #666;
+}
+
+.meta .quantity {
+  font: 26px/1 "Ubuntu Mono", "Lucida Console", "Courier New", Courier, Monospace;
+  display: block;
+  color: #c0392b;
+}
+
+.meta .price {
+  font: 16px/1 "Ubuntu Mono", "Lucida Console", "Courier New", Courier, Monospace;
+  color: #e74c3c;
+}
+
+.description {
+  float: left;
+  width: 250px;
+  border-left: 2px solid #f1c40f;
+  padding-left: 15px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  background: #34495e;
+  color: #ccc;
+  width: 100%;
+  height: 50px;
+  border-top: 5px solid #333;
+  font-size: 16px;
+}
+
+#footer form {
+  text-align: center;
+  padding-top: 10px;
+}
+
+#footer input[type="text"] {
+  color: inherit;
+  width: 30px;
+  border: none;
+  background: transparent;
+  outline: none;
+  text-align: center;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+#footer select {
+  outline: none;
+  border: 2px solid #7f8c8d;
+  background: none;
+  font-size: 15px;
+  width: 150px;
+}
+
+#footer input[type="submit"] {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+
+  border: none;
+  padding: 3px 8px;
+  font-weight: bold;
+  border: 2px solid #ddd;
+  background: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
+}
