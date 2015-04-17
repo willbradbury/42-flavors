@@ -2,7 +2,13 @@
 
   /* Sets a random integer quantity in range [1, 20] for each flavor. */
   function setQuantities() {
-    // TODO
+    var metaElements = document.querySelectorAll("div.flavor div.meta")
+    for(var i=0;i<metaElements.length;i++){
+      var quantitySpan = document.createElement("span");
+      quantitySpan.className = "quantity";
+      quantitySpan.innerHTML = "" + (Math.floor(Math.random()*20)+1);
+      metaElements[i].insertBefore(quantitySpan,metaElements[i].querySelector("span"));
+    }
   }
 
   /* Extracts and returns an array of flavor objects based on data in the DOM. Each
@@ -15,37 +21,77 @@
    * quantity: how many cups of the flavor are available
    */
   function extractFlavors() {
-    // TODO
+    var flavorObjects = [];
+    var flavorElements = document.querySelectorAll("div.flavor");
+
+    for(var i=0;i<flavorElements.length;i++){
+      flavorObjects.push({
+        "element" : flavorElements[i],
+        "name" : flavorElements[i].querySelector("div.description h2").innerHTML,
+        "description" : flavorElements[i].querySelector("div.description p").innerHTML,
+        "price" : parseFloat(flavorElements[i].querySelector("span.price").innerHTML.slice(1)),
+        "quantity" : parseInt(flavorElements[i].querySelector("span.quantity").innerHTML) 
+      });
+    }
+
+    return flavorObjects;
   }
 
   /* Calculates and returns the average price of the given set of flavors. The
    * average should be rounded to two decimal places. */
   function calculateAveragePrice(flavors) {
-    // TODO
+    var priceSum = 0;
+    flavors.forEach(function(flavor){
+      priceSum += flavor.price;
+    });
+    return (priceSum/flavors.length).toFixed(2);
   }
 
   /* Finds flavors that have prices below the given threshold. Returns an array
    * of strings, each of the form "[flavor] costs $[price]". There should be
    * one string for each cheap flavor. */
   function findCheapFlavors(flavors, threshold) {
-    // TODO
+    return flavors.filter(function(flavor){
+      return flavor.price < threshold;
+    }).map(function(flavor){
+      return flavor.name + " costs $" + flavor.price;
+    });
   }
 
   /* Populates the select dropdown with options. There should be one option tag
    * for each of the given flavors. */
   function populateOptions(flavors) {
-    // TODO
+    var dropDown = document.querySelector("select[name=flavor]");
+    dropDown.removeChild(dropDown.children[0]);
+    flavors.forEach(function(flavor,index){
+      var child = dropDown.appendChild(document.createElement("option"));
+      child.innerHTML = flavor.name;
+      child.setAttribute("value",index);
+    });
   }
 
   /* Processes orders for the given set of flavors. When a valid order is made,
    * decrements the quantity of the associated flavor. */
   function processOrders(flavors) {
-    // TODO
+    document.getElementsByTagName("form")[0].addEventListener("submit",function(event){
+      event.preventDefault();
+      var flavor = flavors[parseInt(event.target.getElementsByTagName("select")[0].value)];
+      var amount = event.target.querySelector("input[name=amount]");
+      if(!amount.value) return;
+      if(flavor.quantity - parseInt(amount.value) < 0) return;
+      flavor.element.getElementsByClassName("quantity")[0].innerHTML = flavor.quantity - parseInt(amount.value);
+      flavor.quantity -= parseInt(amount.value);
+      amount.value = "";
+    });
   }
 
   /* Highlights flavors when clicked to make a simple favoriting system. */
   function highlightFlavors(flavors) {
-    // TODO
+    flavors.forEach(function(flavor){
+      flavor.element.addEventListener("click",function(event){
+        flavor.element.classList.toggle("highlighted");
+      });
+    });
   }
 
 
